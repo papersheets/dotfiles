@@ -11,7 +11,7 @@ function doIt() {
         --exclude ".osx" \
         --exclude "bootstrap.sh" \
         -avh --no-perms . ~;
-    source ~/.bash_profile;
+    source ~/.profile;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
