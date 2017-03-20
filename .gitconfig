@@ -1,0 +1,16 @@
+[user]
+	name = Kai
+	email = papersheets@users.noreply.github.com
+[color]
+    ui = true
+[alias]
+    logg = log --all --oneline --topo-order --graph --decorate=short --abbrev-commit --date=short --pretty=tformat:'%C(yellow)%h%Creset %ad %C(blue)%an%C(auto)%d%Creset %s'
+    logdog = log --decorate --oneline --graph
+    logdogsimple = log --decorate --oneline --graph --simplify-by-decoration
+    headmaster = log --decorate --oneline --graph HEAD master
+[core]
+    excludesfile = /home/kto/.gitignore
+[credential]
+	helper = osxkeychain
+[push]
+    default = simple
