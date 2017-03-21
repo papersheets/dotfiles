@@ -14,6 +14,25 @@ function doIt() {
     source ~/.profile;
 }
 
+function vimIt() {
+    repos=(
+        "https://github.com/mileszs/ack.vim.git"
+        "https://github.com/scrooloose/nerdtree.git"
+        "https://github.com/vim-airline/vim-airline.git"
+        "https://github.com/vim-airline/vim-airline-themes.git"
+        "https://github.com/altercation/vim-colors-solarized.git"
+    )
+    root=~/.vim/bundle
+
+    for repo in ${repos[@]}; do
+        echo "Checking $repo"
+        gitRepo="${repo##*/}"
+        directory="${gitRepo%.*}"
+        path=$root/$directory
+        cloneOrPull $path $repo
+    done
+}
+
 function cloneOrPull() {
     path=$1
     repo=$2
@@ -21,22 +40,8 @@ function cloneOrPull() {
         echo "No `basename $repo`"
         git clone $repo $path
     else
-        git -C $path pull
+        git -C $path pull origin master
     fi
-}
-
-function vimIt() {
-    root=~/.vim/bundle
-    path=$root/ack.vim
-    cloneOrPull $path https://github.com/mileszs/ack.vim.git
-    path=$root/nerdtree
-    cloneOrPull $path https://github.com/scrooloose/nerdtree.git
-    path=$root/vim-airline
-    cloneOrPull $path https://github.com/vim-airline/vim-airline
-    path=$root/vim-airline-themes
-    cloneOrPull $path https://github.com/vim-airline/vim-airline-themes
-    path=$root/vim-colors-solarized
-    cloneOrPull $path https://github.com/altercation/vim-colors-solarized.git
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
@@ -51,3 +56,5 @@ else
     fi;
 fi;
 unset doIt;
+unset vimIt;
+unset cloneOrPull;
