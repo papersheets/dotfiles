@@ -84,6 +84,7 @@ noremap <F5> :NERDTreeToggle<CR>
 noremap <F6> :se hls!<CR>
 " F8 = set bg=light
 nnoremap <F8> :call ToggleBackground()<CR>
+nnoremap gV `[v`]
 
 augroup filegroups
     autocmd!
