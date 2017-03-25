@@ -15,11 +15,12 @@ endif
 set term=xterm-256color
 syntax enable
 "default to dark
-set bg=dark
+set background=dark
 
 " Misc
 set backspace=indent,eol,start
 set fileformat=unix
+set modelines=1
 
 " Indentation
 set autoindent
@@ -46,21 +47,16 @@ set wildmode=longest,list
 set lazyredraw
 set lazyredraw
 
-" Searching
-set ignorecase
-set incsearch
-set hlsearch
-
 " Folding
 set foldmethod=indent
 set foldlevel=99
 " Enable folding with the spacebar
 nnoremap <space> za
 
-" Mapleader
-let mapleader = ","
-let g:mapleader = ","
-nnoremap <leader><space> :nohlsearch<CR>
+" Searching
+set ignorecase
+set incsearch
+set hlsearch
 
 " Backups
 set backupdir=~/.vim/backup/
@@ -68,6 +64,13 @@ set directory=~/.vim/backup/
 
 " Filetype recognition for plugins and indents
 filetype plugin indent on
+
+" Mapleader
+let mapleader = ","
+let g:mapleader = ","
+inoremap jk <esc>
+nnoremap gV `[v`]
+nnoremap <leader><space> :nohlsearch<CR>
 
 " To disable F1 for help
 noremap <F1> <NOP>
@@ -84,7 +87,6 @@ noremap <F5> :NERDTreeToggle<CR>
 noremap <F6> :se hls!<CR>
 " F8 = set bg=light
 nnoremap <F8> :call ToggleBackground()<CR>
-nnoremap gV `[v`]
 
 augroup filegroups
     autocmd!
@@ -95,10 +97,10 @@ augroup END
 let g:bg_is_light = 0
 function! ToggleBackground()
     if g:bg_is_light
-        :set bg=dark
+        :set background=dark
         let g:bg_is_light = 0
     else
-        :set bg=light
+        :set background=light
         let g:bg_is_light = 1
     endif
 endfunction
