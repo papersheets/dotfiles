@@ -344,13 +344,15 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>-1270 516 620 392 -1920 0 1920 1080 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>-1487 162 796 473 -1920 0 1920 1080 </string>
+	<string>-1483 429 796 473 -1920 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1 47 1278 724 0 0 1280 777 </string>
+	<string>-1918 620 585 452 -1920 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>3 67 634 703 0 0 1280 777 </string>
+	<string>-958 13 956 1059 -1920 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>-958 620 585 452 -1920 0 1920 1080 </string>
+	<string>-958 8 956 1064 -1920 0 1920 1080 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>-958 13 956 1059 -1920 0 1920 1080 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1127,7 +1129,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>8D7C9BCD-451A-4DED-A5AD-71B6CC3F8C76</string>
 	<key>NoSyncLastTipTime</key>
-	<real>511685060.96947998</real>
+	<real>512121585.93591303</real>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -1159,6 +1161,9 @@
 		<string>0021</string>
 		<string>0022</string>
 		<string>0023</string>
+		<string>0024</string>
+		<string>0025</string>
+		<string>0026</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -1208,7 +1213,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/kai/dotfiles/init</string>
+	<string>/Users/kai/.iterm2</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -1226,10 +1231,12 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-03-20T06:44:20Z</date>
+	<date>2017-03-25T07:59:46Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
+	<false/>
+	<key>ShowFullScreenTabBar</key>
 	<false/>
 	<key>ShowPaneTitles</key>
 	<true/>
