@@ -98,4 +98,8 @@ unset git_prompt
 
 export PIP_REQUIRE_VIRTUALENV=true
 
+gpip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
 set -o vi
