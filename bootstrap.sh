@@ -44,15 +44,25 @@ function cloneOrPull() {
     fi
 }
 
+function cygIt() {
+    case "$(uname -s)" in
+        CYGWIN*)
+            cp themes/SolarizedDark.cygwin ~/.minttyrc
+            ;;
+    esac
+}
+
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
     doIt;
     vimIt;
+    cygIt;
 else
     read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
     echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         doIt;
         vimIt;
+        cygIt;
     fi;
 fi;
 unset doIt;
