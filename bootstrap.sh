@@ -68,3 +68,4 @@ fi;
 unset doIt;
 unset vimIt;
 unset cloneOrPull;
+unset cygIt;
