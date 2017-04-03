@@ -1,6 +1,6 @@
 [user]
-	name = Kai
-	email = papersheets@users.noreply.github.com
+    name = Kai
+    email = papersheets@users.noreply.github.com
 [color]
     ui = true
 [alias]
@@ -10,7 +10,10 @@
     headmaster = log --decorate --oneline --graph HEAD master
 [core]
     excludesfile = /home/kto/.gitignore
+    editor = vim
 [credential]
-	helper = osxkeychain
+    helper = osxkeychain
 [push]
     default = simple
+[commit]
+    template = /home/kto/.gitmessage.txt
