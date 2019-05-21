@@ -56,6 +56,9 @@ if [ "$1" == "--force" -o "$1" == "-f" ]; then
     doIt;
     vimIt;
     cygIt;
+elif [ "$1" == "--light" -o "$1" == "-l" ]; then
+    doIt;
+    cygIt;
 else
     read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
     echo "";
