@@ -9,11 +9,11 @@
     logdogsimple = log --decorate --oneline --graph --simplify-by-decoration
     headmaster = log --decorate --oneline --graph HEAD master
 [core]
-    excludesfile = ~kto/.gitignore
+    excludesfile = ~/.gitignore
     editor = vim
 [credential]
     helper = osxkeychain
 [push]
     default = simple
 [commit]
-    template = ~kto/.gitmessage.txt
+    template = ~/.gitmessage.txt
