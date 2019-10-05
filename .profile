@@ -9,6 +9,11 @@ if [ -d "/usr/local/opt/coreutils/libexec/gnubin" ] ; then
     PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 fi
 
+# set PATH to include homebrew sbin on mac
+if [ -d "/usr/local/sbin" ] ; then
+    PATH="/usr/local/sbin:$PATH"
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
