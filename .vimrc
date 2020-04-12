@@ -91,6 +91,8 @@ nnoremap <F8> :call ToggleBackground()<CR>
 augroup filegroups
     autocmd!
     autocmd BufRead,BufNewFile *.py let python_highlight_all = 1
+    autocmd BufRead,BufNewFile *.{yaml,yml} set filetype=yaml foldmethod=indent
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 " Toggle background between dark and light (default: dark)
