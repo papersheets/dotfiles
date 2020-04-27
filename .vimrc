@@ -87,6 +87,11 @@ noremap <F5> :NERDTreeToggle<CR>
 noremap <F6> :se hls!<CR>
 " F8 = set bg=light
 nnoremap <F8> :call ToggleBackground()<CR>
+" F9 = run Python
+augroup pythonexec
+    autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+    autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+augroup END
 
 augroup filegroups
     autocmd!
