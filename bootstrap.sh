@@ -80,6 +80,7 @@ else
         cygIt;
     fi;
 fi;
+
 unset doIt;
 unset vimIt;
 unset itermIt;
