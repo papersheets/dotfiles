@@ -10,6 +10,7 @@ function doIt() {
         --exclude ".DS_Store" \
         --exclude ".osx" \
         --exclude "bootstrap.sh" \
+        --exclude "README.md" \
         -avh --no-perms . ~;
     source ~/.profile;
 }
@@ -33,6 +34,22 @@ function vimIt() {
     done
 }
 
+function itermIt() {
+    case "$(uname -s)" in
+        Darwin*)
+            rsync -avh --no-perms .iterm2 ~;
+            ;;
+    esac
+}
+
+function cygIt() {
+    case "$(uname -s)" in
+        CYGWIN*)
+            cp themes/SolarizedDark.cygwin ~/.minttyrc
+            ;;
+    esac
+}
+
 function cloneOrPull() {
     path=$1
     repo=$2
@@ -44,20 +61,14 @@ function cloneOrPull() {
     fi
 }
 
-function cygIt() {
-    case "$(uname -s)" in
-        CYGWIN*)
-            cp themes/SolarizedDark.cygwin ~/.minttyrc
-            ;;
-    esac
-}
-
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
     doIt;
     vimIt;
+    itermIt;
     cygIt;
 elif [ "$1" == "--light" -o "$1" == "-l" ]; then
     doIt;
+    itermIt;
     cygIt;
 else
     read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
@@ -65,10 +76,12 @@ else
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         doIt;
         vimIt;
+        itermIt;
         cygIt;
     fi;
 fi;
 unset doIt;
 unset vimIt;
-unset cloneOrPull;
+unset itermIt;
 unset cygIt;
+unset cloneOrPull;
