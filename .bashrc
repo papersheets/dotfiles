@@ -39,11 +39,6 @@ if [ -x /usr/local/opt/coreutils/libexec/gnubin/dircolors ] || [ -x /usr/bin/dir
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -64,14 +59,14 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+fi
+
 if [ -f "$HOME/bin/.git-completion.sh" ] && [ -f "$HOME/bin/.git-prompt.sh" ]; then
     source ~/bin/.git-completion.sh
     source ~/bin/.git-prompt.sh
     git_prompt=yes
-fi
-
-if [ -f /usr/local/etc/bash_completion ]; then
-    . /usr/local/etc/bash_completion
 fi
 
 if [ "$git_prompt" = yes ]; then
