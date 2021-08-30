@@ -5,6 +5,7 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
+    echo "Running doIt";
     rsync --exclude ".git/" \
         --exclude "themes/" \
         --exclude ".DS_Store" \
@@ -13,9 +14,11 @@ function doIt() {
         --exclude "README.md" \
         -avh --no-perms . ~;
     source ~/.profile;
+    echo "Finished doIt";
 }
 
 function vimIt() {
+    echo "Running vimIt";
     repos=(
         "https://github.com/mileszs/ack.vim.git"
         "https://github.com/scrooloose/nerdtree.git"
@@ -32,22 +35,27 @@ function vimIt() {
         path=$root/$directory
         cloneOrPull $path $repo
     done
+    echo "Finished vimIt";
 }
 
-function itermIt() {
+function macIt() {
+    echo "Running macIt";
     case "$(uname -s)" in
         Darwin*)
             rsync -avh --no-perms .iterm2 ~;
             ;;
     esac
+    echo "Finished macIt";
 }
 
-function cygIt() {
+function winIt() {
+    echo "Running winIt";
     case "$(uname -s)" in
-        CYGWIN*)
-            cp themes/SolarizedDark.cygwin ~/.minttyrc
+        CYGWIN* | MINGW64*)
+            cp themes/SolarizedDark.minttyrc ~/.minttyrc
             ;;
     esac
+    echo "Finished winIt";
 }
 
 function cloneOrPull() {
@@ -64,25 +72,25 @@ function cloneOrPull() {
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
     doIt;
     vimIt;
-    itermIt;
-    cygIt;
+    macIt;
+    winIt;
 elif [ "$1" == "--light" -o "$1" == "-l" ]; then
     doIt;
-    itermIt;
-    cygIt;
+    macIt;
+    winIt;
 else
     read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
     echo "";
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         doIt;
         vimIt;
-        itermIt;
-        cygIt;
+        macIt;
+        winIt;
     fi;
 fi;
 
 unset doIt;
 unset vimIt;
-unset itermIt;
-unset cygIt;
+unset macIt;
+unset winIt;
 unset cloneOrPull;
