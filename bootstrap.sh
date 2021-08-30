@@ -8,6 +8,7 @@ function doIt() {
     echo "Running doIt";
     rsync --exclude ".git/" \
         --exclude "themes/" \
+        --exclude ".iterm2/" \
         --exclude ".DS_Store" \
         --exclude ".osx" \
         --exclude "bootstrap.sh" \
