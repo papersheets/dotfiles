@@ -11,8 +11,6 @@
 [core]
     excludesfile = ~/.gitignore
     editor = vim
-[credential]
-    helper = osxkeychain
 [push]
     default = simple
 [commit]
