@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
+set -euo pipefail
 
-git pull origin master;
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
+
+git pull --ff-only
 
 function doIt() {
     echo "Running doIt";
@@ -14,8 +16,7 @@ function doIt() {
         --exclude "bootstrap.sh" \
         --exclude "README.md" \
         -avh --no-perms . ~;
-    source ~/.profile;
-    echo "Finished doIt";
+    echo "Finished doIt. Reload your shell or run: source ~/.profile";
 }
 
 function vimIt() {
@@ -27,13 +28,14 @@ function vimIt() {
         "https://github.com/vim-airline/vim-airline-themes.git"
         "https://github.com/altercation/vim-colors-solarized.git"
     )
-    root=~/.vim/bundle
+    bundleroot=~/.vim/bundle
+    mkdir -p "$bundleroot"
 
-    for repo in ${repos[@]}; do
+    for repo in "${repos[@]}"; do
         echo "Checking $repo"
         gitRepo="${repo##*/}"
         directory="${gitRepo%.*}"
-        path=$root/$directory
+        path=$bundleroot/$directory
         cloneOrPull $path $repo
     done
     echo "Finished vimIt";
@@ -62,11 +64,11 @@ function winIt() {
 function cloneOrPull() {
     path=$1
     repo=$2
-    if [ ! -d $path ]; then
+    if [ ! -d "$path" ]; then
         echo "No `basename $repo`"
-        git clone $repo $path
+        git clone "$repo" "$path"
     else
-        git -C $path pull origin master
+        git -C "$path" pull --ff-only
     fi
 }
 
