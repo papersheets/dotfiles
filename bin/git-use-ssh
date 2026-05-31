@@ -9,6 +9,9 @@ url="$(git remote get-url "$remote")"
 repo_path=""
 
 case "$url" in
+  github:*)
+    repo_path="${url#github:}"
+    ;;
   git@github.com:*)
     repo_path="${url#git@github.com:}"
     ;;
@@ -34,7 +37,7 @@ if [[ ! "$repo_path" =~ ^[^/]+/[^/]+$ ]]; then
   exit 1
 fi
 
-ssh_url="git@github.com:${repo_path}.git"
+ssh_url="github:${repo_path}.git"
 
 git remote set-url "$remote" "$ssh_url"
 
