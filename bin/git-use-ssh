@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+remote="${1:-origin}"
+
+url="$(git remote get-url "$remote")"
+
+# Extract owner/repo from the current remote url
+repo_path=""
+
+case "$url" in
+  git@github.com:*)
+    repo_path="${url#git@github.com:}"
+    ;;
+  ssh://git@github.com/*)
+    repo_path="${url#ssh://git@github.com/}"
+    ;;
+  https://github.com/*)
+    repo_path="${url#https://github.com/}"
+    ;;
+  http://github.com/*)
+    repo_path="${url#http://github.com/}"
+    ;;
+  *)
+    echo "Unsupported GitHub remote URL: $url" >&2
+    exit 1
+    ;;
+esac
+
+repo_path="${repo_path%.git}"
+
+if [[ ! "$repo_path" =~ ^[^/]+/[^/]+$ ]]; then
+  echo "Could not extract owner/repo from: $url" >&2
+  exit 1
+fi
+
+ssh_url="git@github.com:${repo_path}.git"
+
+git remote set-url "$remote" "$ssh_url"
+
+echo "Updated $remote:"
+git remote -v
