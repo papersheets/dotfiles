@@ -13,5 +13,9 @@
     editor = vim
 [push]
     default = simple
+[checkout]
+    defaultRemote = origin
 [commit]
     template = ~/.gitmessage.txt
+[init]
+    defaultBranch = main
