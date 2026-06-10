@@ -122,7 +122,7 @@ endfunction
 
 " Strip trailing whitespace
 function! StripTrailingWhitespaces()
-    call Preserve("%s/\\sæ\+$//e")
+    call Preserve("%s/\\s\+$//e")
 endfunction
 
 " Preserves cursor location before running a command
