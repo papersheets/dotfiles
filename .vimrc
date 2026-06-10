@@ -16,11 +16,14 @@ set term=xterm-256color
 syntax enable
 "default to dark
 set background=dark
+" no bells
+set t_vb=
 
 " Misc
 set backspace=indent,eol,start
 set fileformat=unix
 set modelines=1
+set autochdir
 
 " Indentation
 set autoindent
@@ -44,7 +47,6 @@ set showmatch
 set showcmd
 "set bash type wildcard
 set wildmode=longest,list
-set lazyredraw
 set lazyredraw
 
 " Folding

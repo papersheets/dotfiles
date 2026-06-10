@@ -8,14 +8,7 @@ git pull --ff-only
 
 function doIt() {
     echo "Running doIt";
-    rsync --exclude ".git/" \
-        --exclude "themes/" \
-        --exclude ".iterm2/" \
-        --exclude ".DS_Store" \
-        --exclude ".osx" \
-        --exclude "bootstrap.sh" \
-        --exclude "README.md" \
-        -avh --no-perms . ~;
+    rsync --exclude-from=.rsyncignore -avh --no-perms . ~;
     echo "Finished doIt. Reload your shell or run: source ~/.profile";
 }
 
@@ -72,12 +65,14 @@ function cloneOrPull() {
     fi
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+MODE=${1:-}
+
+if [ "$MODE" == "--force" -o "$MODE" == "-f" ]; then
     doIt;
     vimIt;
     macIt;
     winIt;
-elif [ "$1" == "--light" -o "$1" == "-l" ]; then
+elif [ "$MODE" == "--light" -o "$MODE" == "-l" ]; then
     doIt;
     macIt;
     winIt;
@@ -91,9 +86,3 @@ else
         winIt;
     fi;
 fi;
-
-unset doIt;
-unset vimIt;
-unset macIt;
-unset winIt;
-unset cloneOrPull;

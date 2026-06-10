@@ -1,0 +1,8 @@
+.git/
+themes/
+.iterm2/
+.DS_Store
+.osx
+bootstrap.sh
+README.md
+.rsyncignore

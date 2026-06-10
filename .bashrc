@@ -83,3 +83,4 @@ gpip() {
 }
 
 set -o vi
+umask 022
