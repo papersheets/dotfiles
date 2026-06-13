@@ -1,5 +1,13 @@
-subject line
+[type]: Short summary of changes in 50 characters or less
 
-what happened
+Detailed explanation of why this change was made and what it does.
+Keep lines wrapped at 72 characters to ensure proper formatting.
 
-[ticket: X]
+Fixes #123 (or Related Ticket ID)
+
+# ----------------- Quick Reminders -----------------
+# [type] choices: feat, fix, docs, style, refactor, test, chore
+# - Use the imperative mood (e.g., "Add feature" not "Added feature").
+# - Do not end the first line (subject line) with a period.
+# - Keep a blank line separating the subject, body, and footer.
+# ---------------------------------------------------
