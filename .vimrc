@@ -1,23 +1,13 @@
 " Colours
-" xterm magic
-if &term =~ "xterm"
-  if has("terminfo")
-    set t_Co=8
-    set t_Sf=^[[3%p1%dm
-    set t_Sb=^[[4%p1%dm
-  else
-    set t_Co=8
-    set t_Sf=^[[3%dm
-    set t_Sb=^[[4%dm
-  endif
-endif
-
-set term=xterm-256color
-syntax enable
-"default to dark
+set t_Co=256
 set background=dark
-" no bells
+syntax enable
+
+" No bells
+set noerrorbells
+set novisualbell
 set t_vb=
+set belloff=all
 
 " Misc
 set backspace=indent,eol,start
@@ -27,8 +17,8 @@ set autochdir
 
 " Indentation
 set autoindent
-set smartindent
-set cindent
+set nosmartindent
+set nocindent
 
 " Spaces and Tabs
 set expandtab
@@ -57,6 +47,7 @@ nnoremap <space> za
 
 " Searching
 set ignorecase
+set smartcase
 set incsearch
 set hlsearch
 
@@ -91,15 +82,17 @@ noremap <F6> :se hls!<CR>
 nnoremap <F8> :call ToggleBackground()<CR>
 " F9 = run Python
 augroup pythonexec
-    autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-    autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+    autocmd!
+    autocmd FileType python nnoremap <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+    autocmd FileType python inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 augroup END
 
 augroup filegroups
     autocmd!
     autocmd BufRead,BufNewFile *.py let python_highlight_all = 1
-    autocmd BufRead,BufNewFile *.{yaml,yml} set filetype=yaml foldmethod=indent
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd BufRead,BufNewFile *.yaml,*.yml setlocal filetype=yaml
+    autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent nosmartindent nocindent foldmethod=indent
+    autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent nosmartindent nocindent
 augroup END
 
 " Toggle background between dark and light (default: dark)
@@ -147,10 +140,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:solarized_termtrans = 1
 colorscheme solarized
 
-" highlight right margin
-highlight rightMargin ctermbg=Red guibg=Red
-match rightMargin /.\%>80v/
-
 " highlight trailing whitespace
 highlight trailingWhitespace ctermbg=Red guibg=Red
-match trailingWhitespace /\s\{1,}$/
+call matchadd('trailingWhitespace', '/\s\+$/')
+
+" highlight right margin
+highlight rightMargin ctermbg=Red guibg=Red
+" call matchadd('rightMargin', '/.\%>80v/')
