@@ -135,6 +135,8 @@ execute pathogen#infect()
 set laststatus=2
 let g:airline_theme='wombat'
 let g:airline#extensions#tabline#enabled = 1
+let g:terraform_fmt_on_save = 1
+let g:terraform_align = 1
 
 " Solarized
 let g:solarized_termtrans = 1

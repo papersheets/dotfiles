@@ -20,6 +20,7 @@ function vimIt() {
         "https://github.com/vim-airline/vim-airline.git"
         "https://github.com/vim-airline/vim-airline-themes.git"
         "https://github.com/altercation/vim-colors-solarized.git"
+        "https://github.com/hashivim/vim-terraform.git"
     )
     bundleroot=~/.vim/bundle
     mkdir -p "$bundleroot"
